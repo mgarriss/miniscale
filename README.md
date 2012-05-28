@@ -1,29 +1,29 @@
-# Note::Seq
+# About MiniScale #
 
-TODO: Write a gem description
+## What is MiniScale? ##
 
-## Installation
+[link name](http://example.org)
 
-Add this line to your application's Gemfile:
+Blah blah
 
-    gem 'note-seq'
+ * list item 1
+ * list item 2
 
-And then execute:
+## What is MiniScale good for? ##
 
-    $ bundle
 
-Or install it yourself as:
+## Install the gem ##
 
-    $ gem install note-seq
+Install it with [RubyGems](https://rubygems.org/)
 
-## Usage
+    gem install miniscale
 
-TODO: Write usage instructions here
+or add this to your Gemfile if you use [Bundler](http://gembundler.com/):
 
-## Contributing
+    gem "miniscale"
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+
+## Getting started ##
+
+
+### An IRB session  ###
