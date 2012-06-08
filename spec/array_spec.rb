@@ -154,7 +154,7 @@ describe Array do
     Fs.c(2,[1,5]).n(1).should eq([:Fs,:Cs])
   end
   
-  it 'the n methods takes many args and just maps' do
+  it 'the n methods takes many args and just maps',:pending do
     G.c(4,[1,2]).n(1,2).should eq([[:G,:B],[:A,:B]])
   end
   

@@ -6,8 +6,8 @@ require 'rb-fsevent'
   
 include RSpec::Mocks::ExampleMethods
 
-require 'scale'
-include Scale
+require 'miniscale'
+include MiniScale
 
 RSpec.configure do |config|
   config.filter_run_excluding :pending => true

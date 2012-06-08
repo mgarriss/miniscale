@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Scale do
+describe MiniScale do
   it 'has a factory to produce Arrays given a root, steps and inversion' do
-    Scale(:C,Major).should eq([:C,:D,:E,:F,:G,:A,:B]) 
-    Scale(:A,Minor).should eq([:A,:B,:C,:D,:E,:F,:G]) 
-    Scale(:G,[1,5,8]).should eq(G.chord)
+    MiniScale(:C,Major).should eq([:C,:D,:E,:F,:G,:A,:B]) 
+    MiniScale(:A,Minor).should eq([:A,:B,:C,:D,:E,:F,:G]) 
+    MiniScale(:G,[1,5,8]).should eq(G.chord)
   end
   
   it 'has a constant for the natural notes' do
@@ -61,13 +61,13 @@ describe Scale do
     Notes.each do |note|
       describe Major do
         it "defines Scale::#{note}" do
-          eval "defined?(Scale::#{note}).should be_true"
+          eval "defined?(MiniScale::#{note}).should be_true"
         end
       end
       
       describe Minor do
         it "defines Scale::#{note}m" do
-          eval "defined?(Scale::#{note}m).should be_true"
+          eval "defined?(MiniScale::#{note}m).should be_true"
         end
       end
     end

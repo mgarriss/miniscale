@@ -19,15 +19,15 @@ class Symbol
   end
   
   def flat?
-    Scale::Flats.include?(self)
+    MiniScale::Flats.include?(self)
   end
   
   def natural?
-    Scale::Naturals.include?(self)
+    MiniScale::Naturals.include?(self)
   end
   
   def sharp?
-    Scale::Sharps.include?(self)
+    MiniScale::Sharps.include?(self)
   end
   
   def flat
@@ -72,5 +72,9 @@ class Symbol
     else
       self
     end
+  end
+  
+  def pretty_print(q)
+    q.text (':'+to_s).ljust(3)
   end
 end

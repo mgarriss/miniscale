@@ -1,4 +1,4 @@
-module Scale
+module MiniScale
   Naturals = [:C,:D,:E,:F,:G,:A,:B]
   Flats = [:Db,:Eb,:Gb,:Ab,:Bb]
   Sharps = [:Cs,:Ds,:Fs,:Gs,:As]
@@ -9,19 +9,20 @@ module Scale
   Minor = [1,3,4,6,8,9,11]
 end
 
-def Scale(root,steps,flavor=nil)
+def MiniScale(root,steps,flavor=nil)
   if root.flat?
     flavor = :flat
   elsif root.sharp?
     flavor = :sharp
   end
-  target = (flavor == :sharp ? Scale::NotesAsSharps : Scale::NotesAsFlats)
+  target = (flavor == :sharp ? MiniScale::NotesAsSharps :
+                               MiniScale::NotesAsFlats)
   target.rotate(target.index(root)).chord(steps)
 end
   
-module Scale
+module MiniScale
   Notes.each do |n|
-    eval "#{n} = Scale(n,Major)"
-    eval "#{n}m =Scale(n,Minor)"
+    eval "#{n} = MiniScale(n,Major)"
+    eval "#{n}m = MiniScale(n,Minor)"
   end
 end

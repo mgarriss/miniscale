@@ -1,3 +1,5 @@
+Thread.current[:indent] = -2
+
 class Array
   def note(flavor=nil)
     map do |n|
@@ -10,9 +12,13 @@ class Array
       n.semitones
     end
   end
+
+  attr_accessor :base
   
   def chord(*args)
-    arg = args.first
+    if (arg = args.first).kind_of?(Array)
+      arg.base = self
+    end
     if args[1]
       to_return = args[1..-1].map do |a|
         a.map do |i|
@@ -40,9 +46,8 @@ class Array
           arg << ((i * 2) + 1)
         end
       end
-      arg ||= [1,3,5]
-      arg.map do |i|
-        self[i-1]
+      (arg || [1,3,5]).map do |i|
+        self.n(i)
       end
     end
   end
@@ -124,6 +129,7 @@ class Array
       if first.kind_of? Symbol
         c(args)
       else
+        puts 'here'
         map do |a|
           a.n(*args)
         end
@@ -132,7 +138,27 @@ class Array
   end
 
   def pretty_print(q)
-    q.text to_s
+    Thread.current[:indent] += 2
+    if find{|e| e.kind_of?(Array)}
+      q.text((" "*Thread.current[:indent]) + "[\n")
+      each_with_index do |e,i|
+        e.pretty_print(q)
+        if i == (size - 1)
+          q.text "\n"
+        else
+          q.text ",\n"
+        end
+      end
+      q.text((" "*Thread.current[:indent]) + "]")
+    else
+      q.text((" "*Thread.current[:indent]) + "[")
+      each_with_index do |e,i|
+        e.pretty_print(q)
+        q.text ", " unless i == (size - 1)
+      end
+      q.text "]"
+    end
+    Thread.current[:indent] -= 2
   end
   
   alias c chord
